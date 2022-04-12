@@ -23,6 +23,7 @@ import {
   Layout,
   OffLayoutArea,
 } from "@components/layout";
+import { PostList } from "src/pages/posts/list";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
@@ -40,6 +41,27 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       Footer={Footer}
       Layout={Layout}
       OffLayoutArea={OffLayoutArea}
+      resources={[
+        {
+          name: "CMS",
+        },
+        {
+          name: "Posts",
+          // parentName: "CMS",
+          list: PostList,
+          // create: PostCreate,
+          // edit: PostEdit,
+          // show: PostShow,
+        },
+        {
+          name: "category",
+          parentName: "CMS",
+          // list: CategoryList,
+          // create: CategoryCreate,
+          // edit: CategoryEdit,
+          canDelete: true,
+        },
+      ]}
     >
       <Component {...pageProps} />
     </Refine>
