@@ -47,7 +47,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         },
         {
           name: "Posts",
-          // parentName: "CMS",
+          parentName: "CMS",
           list: PostList,
           // create: PostCreate,
           // edit: PostEdit,
