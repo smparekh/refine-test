@@ -19,7 +19,7 @@ export const Sider: React.FC = () => {
   const Title = useTitle();
   const { SubMenu } = Menu;
 
-  const { menuItems, selectedKey } = useMenu();
+  const { menuItems, selectedKey, defaultOpenKeys } = useMenu();
   const { push } = useNavigation();
   const breakpoint = Grid.useBreakpoint();
 
@@ -42,12 +42,20 @@ export const Sider: React.FC = () => {
       }
       const isSelected = route === selectedKey;
       const isRoute = !(parentName !== undefined && children.length === 0);
+      let newRoute: string | undefined;
+      if (parentName !== undefined) {
+        newRoute = route?.replace(`/${parentName}`, "");
+      }
       return (
-        <CanAccess key={route} resource={name.toLowerCase()} action="list">
+        <CanAccess
+          key={newRoute ?? route}
+          resource={name.toLowerCase()}
+          action="list"
+        >
           <Menu.Item
             key={selectedKey}
             onClick={() => {
-              push(route ?? "");
+              push(newRoute ?? route ?? "");
             }}
             style={{
               fontWeight: isSelected ? "bold" : "normal",
@@ -75,6 +83,7 @@ export const Sider: React.FC = () => {
     >
       {Title && <Title collapsed={collapsed} />}
       <Menu
+        defaultOpenKeys={defaultOpenKeys}
         selectedKeys={[selectedKey]}
         mode="inline"
         onClick={({ key }) => {
