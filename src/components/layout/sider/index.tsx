@@ -42,20 +42,22 @@ export const Sider: React.FC = () => {
       }
       const isSelected = route === selectedKey;
       const isRoute = !(parentName !== undefined && children.length === 0);
-      let newRoute: string | undefined;
-      if (parentName !== undefined) {
-        newRoute = route?.replace(`/${parentName}`, "");
-      }
+      // let newRoute: string | undefined;
+      // console.log("parentName: %s, route: %s", parentName, route);
+      // if (parentName !== undefined) {
+      //   newRoute = route?.replace(`/${parentName}`, "");
+      // }
+      // console.log("New Route: ", newRoute);
       return (
         <CanAccess
-          key={newRoute ?? route}
+          key={route}
           resource={name.toLowerCase()}
           action="list"
         >
           <Menu.Item
             key={selectedKey}
             onClick={() => {
-              push(newRoute ?? route ?? "");
+              push(route ?? "");
             }}
             style={{
               fontWeight: isSelected ? "bold" : "normal",

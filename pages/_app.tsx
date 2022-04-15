@@ -24,6 +24,7 @@ import {
   OffLayoutArea,
 } from "@components/layout";
 import { PostList } from "src/pages/posts/list";
+import { PostCreate } from "src/pages/posts/create";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
@@ -46,12 +47,15 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
           name: "CMS",
         },
         {
-          name: "Posts",
+          name: "posts",
           parentName: "CMS",
           list: PostList,
-          // create: PostCreate,
+          create: PostCreate,
           // edit: PostEdit,
           // show: PostShow,
+          options: {
+            route: "/posts"
+          }
         },
         {
           name: "category",
